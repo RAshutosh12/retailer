@@ -28,13 +28,13 @@ public class CustomerController {
         return customerRepo.findById(customerId);
     }
 
-    @PostMapping(value="/addCustomer")
+    @PostMapping(value="/customers/addCustomer")
     public Customer addUser(@RequestBody Customer customer) {
         customerRepo.save(customer);
         return customer;
     }
 
-    @DeleteMapping(value="/deleteCustomer/{id}")
+    @DeleteMapping(value="/customers/deleteCustomer/{id}")
     public void deleCustomer(@PathVariable(name = "id") Long customerId){
         customerRepo.deleteById(customerId);
     }
