@@ -33,6 +33,12 @@ public class ProductController {
 
     @DeleteMapping(value = "/products/removeProduct/{id}")
     public String removeProduct(@PathVariable(name = "id") Long productId){
-        return productService.remove(productId);
+        try{
+            return productService.remove(productId);
+        }
+        catch(Exception e){
+            
+        }
+        return "Not present";
     }
 }

@@ -1,6 +1,9 @@
 package com.rsky.retailer.customer;
 
+import java.util.List;
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.rsky.retailer.embadableClasses.Address;
+import com.rsky.retailer.order.Order;
 
 @Entity
 public class Customer {
@@ -26,9 +30,9 @@ public class Customer {
     @Embedded
     private Address address;
 
-    public Customer() {
-    }
-
+    // @Column
+    // @ElementCollection
+    // private List<Order> orderHistory;
 
     public Customer(Long customerID, String firstName, String lastName, Address address) {
         this.customerID = customerID;
@@ -37,14 +41,18 @@ public class Customer {
         this.address = address;
     }
 
+    public Customer() {
+    }
+
+
 
     public Long getCustomerID() {
         return this.customerID;
     }
 
-    // public void setCustomerID(Long customerID) {
-    //     this.customerID = customerID;
-    // }
+    public void setCustomerID(Long customerID) {
+        this.customerID = customerID;
+    }
 
     public String getFirstName() {
         return this.firstName;
@@ -70,6 +78,9 @@ public class Customer {
         this.address = address;
     }
 
+
+    
+
     @Override
     public String toString() {
         return "{" +
@@ -79,4 +90,5 @@ public class Customer {
             ", address='" + getAddress() + "'" +
             "}";
     }
+    
 }

@@ -1,14 +1,16 @@
 package com.rsky.retailer.order;
 
-import java.util.List;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.rsky.retailer.product.Product;
 
 @Entity
 @Table(name = "orders")
@@ -21,17 +23,17 @@ public class Order {
     @Column
     private Long customerId;
 
-    @Column
-    @ElementCollection
-    private List<Long> producList;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "productId")
+    private Product product;
 
     public Order() {
     }
 
-    public Order(Long orderId, Long customerId, List<Long> producList) {
+    public Order(Long orderId, Long customerId) {
         this.orderId = orderId;
         this.customerId = customerId;
-        this.producList = producList;
     }
 
     public Long getOrderId() {
@@ -50,17 +52,17 @@ public class Order {
         this.customerId = customerId;
     }
 
-    public List<Long> getProducList() {
-        return producList;
+    public Product getProducList() {
+        return product;
     }
 
-    public void setProducList(List<Long> producList) {
-        this.producList = producList;
+    public void setProducList(Product product) {
+        this.product = product;
     }
 
     @Override
     public String toString() {
-        return "Order [customerId=" + customerId + ", orderId=" + orderId + ", producList=" + producList + "]";
+        return "Order [customerId=" + customerId + ", orderId=" + orderId + ", producList=" + product + "]";
     }
 
 }
