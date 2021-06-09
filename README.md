@@ -6,4 +6,3 @@ Currently all APIs are based on REST functionality.
 
 Tech Stack: Java (v11) , Spring Boot(v2.4.3), MySQL Server (v8.0)
 
-#R
